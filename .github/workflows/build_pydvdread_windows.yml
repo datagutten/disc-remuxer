@@ -41,7 +41,11 @@ jobs:
         sparse-checkout: |
           pydvdread_build/setup.py
         sparse-checkout-cone-mode: false
-        path: pydvdread\libdvdread
+        path: disc-remuxer
+
+    - name: Move setup.py
+      shell: bash
+      run: mv disc-remuxer/pydvdread_build/setup.py pydvdread
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
