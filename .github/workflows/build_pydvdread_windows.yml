@@ -38,6 +38,15 @@ jobs:
 
     - run: dir c:\build\pydvdread\libdvdread
 
+    - name: Checkout setup.py
+      uses: actions/checkout@v5
+      with:
+        sparse-checkout: |
+          pydvdread_build/setup.py
+        sparse-checkout-cone-mode: false
+        path: c:\build\pydvdread\libdvdread
+
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
