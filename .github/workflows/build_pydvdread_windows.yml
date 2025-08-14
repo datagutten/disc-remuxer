@@ -42,10 +42,10 @@ jobs:
 
     - name: Build Python wheel
       working-directory: c:\build\libdvdread
-      run: pip3 wheel https://github.com/noah1510/PyDvdRead
+      run: pip3 wheel git+https://github.com/noah1510/PyDvdRead
 
     - uses: actions/upload-artifact@v4
       with:
-        name: net-snmp-wheels Python ${{ matrix.python-version }}
+        name: pydvdread Python ${{ matrix.python-version }}
         path: dist
 
