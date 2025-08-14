@@ -37,15 +37,28 @@ jobs:
     - name: Install setuptools
       run: pip3 install -U setuptools
 
+    - name: Checkout library
+      uses: actions/checkout@v5
+      with:
+        repository: noah1510/PyDvdRead
+        path: pydvdread
+
     - name: Setup dev cmd
       uses: ilammy/msvc-dev-cmd@v1
 
+    - name: Copy files
+      shell: bash
+      run: |
+        cd pydvdread
+        mkdir /usr
+        mv /build/libdvdread/include /usr/include 
+
     - name: Build Python wheel
       working-directory: c:\build\libdvdread
-      run: pip3 wheel git+https://github.com/noah1510/PyDvdRead
+      run: python setup.py bdist_wheel
 
     - uses: actions/upload-artifact@v4
       with:
         name: pydvdread Python ${{ matrix.python-version }}
-        path: dist
+        path: c:\build\libdvdread
 
