@@ -49,21 +49,20 @@ jobs:
 
     - run: dir c:\build\libdvdread
 
-    - shell: bash
-      run: ls -l /build
+    - run: pwd
+      shell: bash
 
     - shell: bash
-      run: ls -l /build/libdvdread
-
+      run: ls -l /c/build/libdvdread
 
     - name: Copy files
       shell: bash
       run: |
-        cd pydvdread
-        mv /build/libdvdread/include /usr/include 
+        mv /c/build/libdvdread/include /usr/include 
 
     - name: Build Python wheel
-      working-directory: c:\build\libdvdread
+      # working-directory: c:\build\libdvdread
+      shell: bash
       run: python setup.py bdist_wheel
 
     - uses: actions/upload-artifact@v4
