@@ -49,6 +49,7 @@ jobs:
       run: | 
         mv disc-remuxer/pydvdread_build/setup.py pydvdread
         mv disc-remuxer/pydvdread_build/config.h pydvdread/libdvdread/include
+        mv disc-remuxer/pydvdread_build/version.h pydvdread/libdvdread/include
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
