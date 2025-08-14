@@ -24,11 +24,19 @@ jobs:
     - name: Create folder
       run: md C:\build
 
+    - name: Checkout pydvdread
+      uses: actions/checkout@v5
+      with:
+        repository: noah1510/PyDvdRead
+        path: c:\build\pydvdread
+
     - name: Download libvdread
       run: Invoke-WebRequest -Uri https://github.com/ShiftMediaProject/libdvdread/releases/download/6.1.3-1/libdvdread_6.1.3-1_msvc17.zip -OutFile c:\build\libdvdread.zip
 
     - name: Unpack libdvdread
-      run: Expand-Archive -Path c:\build\libdvdread.zip -DestinationPath c:\build\libdvdread
+      run: Expand-Archive -Path c:\build\libdvdread.zip -DestinationPath c:\build\pydvdread\libdvdread
+
+    - run: dir c:\build\pydvdread\libdvdread
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
@@ -38,30 +46,17 @@ jobs:
     - name: Install setuptools
       run: pip3 install -U setuptools
 
-    - name: Checkout library
-      uses: actions/checkout@v5
-      with:
-        repository: noah1510/PyDvdRead
-        path: pydvdread
-
     - name: Setup dev cmd
       uses: ilammy/msvc-dev-cmd@v1
-
-    - run: dir c:\build\libdvdread
 
     - run: pwd
       shell: bash
 
     - shell: bash
-      run: ls -l /c/build/libdvdread
-
-    - name: Copy files
-      shell: bash
-      run: |
-        mv /c/build/libdvdread/include /usr/include 
+      run: ls -l /c/build/pydvdread
 
     - name: Build Python wheel
-      # working-directory: c:\build\libdvdread
+      working-directory: c:\build\pydvdread
       shell: bash
       run: python setup.py bdist_wheel
 
