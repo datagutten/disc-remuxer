@@ -50,7 +50,6 @@ jobs:
       shell: bash
       run: |
         cd pydvdread
-        mkdir /usr
         mv /build/libdvdread/include /usr/include 
 
     - name: Build Python wheel
