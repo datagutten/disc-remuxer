@@ -54,11 +54,11 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install setuptools
-      run: pip3 install -U setuptools
+#    - name: Install setuptools
+#      run: pip3 install -U setuptools
 
-    - name: Setup dev cmd
-      uses: ilammy/msvc-dev-cmd@v1
+#    - name: Setup dev cmd
+#      uses: ilammy/msvc-dev-cmd@v1
 
     - name: Build Python wheel
       working-directory: pydvdread
