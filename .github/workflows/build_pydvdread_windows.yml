@@ -54,11 +54,8 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
 
-    - name: Install wheel
-      run: pip3 install -U wheel
-
-#    - name: Setup dev cmd
-#      uses: ilammy/msvc-dev-cmd@v1
+    - name: Install setuptools
+      run: pip3 install -U setuptools
 
     - name: Build Python wheel
       working-directory: pydvdread
