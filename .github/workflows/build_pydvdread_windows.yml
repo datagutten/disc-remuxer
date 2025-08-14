@@ -11,7 +11,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ '3.10', '3.11', '3.12', '3.13' ]
+        python-version: [ #'3.10', '3.11', '3.12',
+                          '3.13' ]
 
     steps:
     - name: Get latest libdvdread build
@@ -45,6 +46,15 @@ jobs:
 
     - name: Setup dev cmd
       uses: ilammy/msvc-dev-cmd@v1
+
+    - run: dir c:\build\libdvdread
+
+    - shell: bash
+      run: ls -l /build
+
+    - shell: bash
+      run: ls -l /build/libdvdread
+
 
     - name: Copy files
       shell: bash
