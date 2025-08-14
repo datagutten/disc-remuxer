@@ -11,8 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [ #'3.10', '3.11', '3.12',
-                          '3.13' ]
+        python-version: [ '3.10', '3.11', '3.12', '3.13' ]
 
     steps:
     - name: Get latest libdvdread build
@@ -33,9 +32,7 @@ jobs:
     - name: Unpack libdvdread
       run: Expand-Archive -Path libdvdread.zip -DestinationPath pydvdread\libdvdread
 
-    - run: dir pydvdread\libdvdread
-
-    - name: Checkout setup.py
+    - name: Checkout config
       uses: actions/checkout@v5
       with:
         sparse-checkout: |
@@ -62,12 +59,6 @@ jobs:
 
     - name: Setup dev cmd
       uses: ilammy/msvc-dev-cmd@v1
-
-    - run: pwd
-      shell: bash
-
-    - shell: bash
-      run: ls -l pydvdread/libdvdread
 
     - name: Build Python wheel
       working-directory: pydvdread
