@@ -58,7 +58,7 @@ jobs:
       shell: bash
 
     - shell: bash
-      run: ls -l pydvdread
+      run: ls -l pydvdread/libdvdread
 
     - name: Build Python wheel
       working-directory: pydvdread

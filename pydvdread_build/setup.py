@@ -1,5 +1,6 @@
 import sys
 from distutils.core import setup, Extension
+import os
 
 majv = 2
 minv = 0
@@ -16,6 +17,9 @@ dvdread = Extension(
     sources=['src/dvdread.c'],
     # extra_compile_args=['-std=c11']
 )
+
+print('Include dirs', os.path.realpath(dvdread.include_dirs[0]))
+print('Lib dirs', os.path.realpath(dvdread.library_dirs[0]))
 
 setup(
     name='dvdread',
