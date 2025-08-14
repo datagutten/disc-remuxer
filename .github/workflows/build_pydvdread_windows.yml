@@ -41,6 +41,7 @@ jobs:
         sparse-checkout: |
           pydvdread_build/setup.py
           pydvdread_build/config.h
+          pydvdread_build/version.h
         sparse-checkout-cone-mode: false
         path: disc-remuxer
 
