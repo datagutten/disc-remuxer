@@ -1,4 +1,4 @@
-name: Build libaacs
+name: Build video libraries for windows
 on:
   push:
   pull_request:
@@ -36,9 +36,9 @@ jobs:
     - run: pwd
       shell: bash
 
-    - run: dir ..
+    - run: dir ${{ github.workspace }}/../..
 
     - uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.tool }}
-        path: ../msvc
+        path: D:\a\msvc
