@@ -33,12 +33,9 @@ jobs:
     - name: Build libaacs
       run: msbuild 'SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
 
-    - run: pwd
-      shell: bash
-
-    - run: dir ${{ github.workspace }}/../..
+    - run: dir ${{ github.workspace }}/../../msvc
 
     - uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.tool }}
-        path: D:\a\msvc
+        path: ${{ github.workspace }}/../../msvc
