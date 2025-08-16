@@ -21,13 +21,11 @@ jobs:
         repository: ShiftMediaProject/FFmpeg
 
     - name: Checkout FFVS-Project-Generator
-      if: matrix.tool == 'ffmpeg'
       uses: actions/checkout@v5
       with:
         repository: ShiftMediaProject/${{ matrix.tool }}
 
     - name: Generate FFmpeg project
-      if: matrix.tool == 'ffmpeg'
       run: project_generate --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread  --disable-nvdec --disable-nvenc
       working-directory: FFVS-Project-Generator
 
