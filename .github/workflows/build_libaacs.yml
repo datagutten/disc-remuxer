@@ -5,15 +5,19 @@ on:
   workflow_dispatch:
 
 jobs:
-  build_libaacs:
+  build_tools:
     runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tool: [ 'libaacs', 'libbluray', 'libdvdread' ]
 
     steps:
 
-    - name: Checkout libaacs
+    - name: Checkout tool
       uses: actions/checkout@v5
       with:
-        repository: ShiftMediaProject/libaacs
+        repository: ShiftMediaProject/${{ matrix.tool }}
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
@@ -22,13 +26,12 @@ jobs:
       run: SMP/project_get_dependencies.bat
 
     - name: Build dependencies
-      run: msbuild 'SMP/libaacs_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
+      run: msbuild 'SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
 
     - name: Build libaacs
-      run: msbuild 'SMP/libaacs.sln' /p:configuration=ReleaseDLL /p:platform=x64
+      run: msbuild 'SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
 
     - uses: actions/upload-artifact@v4
       with:
-        name: libaacs
+        name: ${{ matrix.tool }}
         path: msvc
-
