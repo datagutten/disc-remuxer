@@ -9,17 +9,19 @@ jobs:
     runs-on: windows-2025
     steps:
 
+    - name: Checkout FFmpeg
+      uses: actions/checkout@v5
+      with:
+        repository: ShiftMediaProject/FFmpeg
+        path: ${{ github.workspace }}/build/FFmpeg
+
     - name: Download FFVS-Project-Generator
       run: Invoke-WebRequest -Uri https://github.com/ShiftMediaProject/FFVS-Project-Generator/releases/download/1.12.0/FFVS-Project-Generator_1.12.0_x64.zip -OutFile FFVS-Project-Generator.zip
 
     - name: Unpack FFVS-Project-Generator
       run: Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/FFVS-Project-Generator
 
-    - name: Checkout FFmpeg
-      uses: actions/checkout@v5
-      with:
-        repository: ShiftMediaProject/FFmpeg
-        path: ${{ github.workspace }}/build/FFmpeg
+    - run: dir ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - name: Generate FFmpeg project
       run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread  --disable-nvdec --disable-nvenc
