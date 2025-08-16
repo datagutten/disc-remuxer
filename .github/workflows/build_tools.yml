@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [ 'libaacs', 'libbluray', 'libdvdread' ]
+        tool: [ 'libaacs','libbdplus', 'libbluray', 'libdvdread' ]
 
     steps:
 
