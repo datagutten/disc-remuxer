@@ -24,6 +24,7 @@ jobs:
 
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
+      if: matrix.tool != 'libdvdread'
 
     - name: Build dependencies
       run: msbuild 'SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
