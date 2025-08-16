@@ -26,3 +26,9 @@ jobs:
 
     - name: Build libaacs
       run: msbuild 'SMP/libaacs.sln' /p:configuration=ReleaseDLL /p:platform=x64
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: libaacs
+        path: msvc
+
