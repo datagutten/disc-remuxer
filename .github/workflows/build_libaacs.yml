@@ -28,6 +28,7 @@ jobs:
 
     - name: Build dependencies
       run: msbuild 'SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
+      if: matrix.tool != 'libdvdread'
 
     - name: Build libaacs
       run: msbuild 'SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
