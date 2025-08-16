@@ -1,0 +1,28 @@
+name: Build libaacs
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build_libaacs:
+    runs-on: windows-latest
+
+    steps:
+
+    - name: Checkout libaacs
+      uses: actions/checkout@v5
+      with:
+        repository: ShiftMediaProject/libaacs
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
+
+    - name: Get dependencies
+      run: SMP/project_get_dependencies.bat
+
+    - name: Build dependencies
+      run: msbuild 'SMP/libaacs_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
+
+    - name: Build libaacs
+      run: msbuild 'SMP/libaacs.sln' /p:configuration=ReleaseDLL /p:platform=x64
