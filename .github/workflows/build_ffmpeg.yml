@@ -25,10 +25,10 @@ jobs:
     - name: Unpack FFVS-Project-Generator
       run: Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/FFVS-Project-Generator
 
-    - run: dir ${{ github.workspace }}/build/FFVS-Project-Generator
+    - run: dir ${{ github.workspace }}/build
 
     - name: Generate FFmpeg project
-      shell: cmd
+      shell: bash
       run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread  --disable-nvdec --disable-nvenc
       working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
 
