@@ -15,6 +15,13 @@ jobs:
         repository: ShiftMediaProject/FFmpeg
         path: ${{ github.workspace }}/build/FFmpeg
 
+    - name: Checkout libdvdnav
+      uses: actions/checkout@v5
+      with:
+        repository: ShiftMediaProject/libdvdnav
+        path: ${{ github.workspace }}/build/libdvdnav
+
+
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
       working-directory: ${{ github.workspace }}/build/FFmpeg
