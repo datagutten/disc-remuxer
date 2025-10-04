@@ -19,8 +19,7 @@ jobs:
       uses: actions/checkout@v5
       with:
         repository: ShiftMediaProject/libdvdnav
-        path: ${{ github.workspace }}/build/libdvdnav
-
+        path: ${{ github.workspace }}/build/dvdnav
 
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
