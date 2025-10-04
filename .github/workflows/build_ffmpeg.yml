@@ -68,7 +68,9 @@ jobs:
         Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/VSNASM
 
     - name: Install VSNASM
-      run: ${{ github.workspace }}/build/VSNASM/install_script.bat
+      run: |
+        dir ${{ github.workspace }}\build\VSNASM
+        ${{ github.workspace }}\build\VSNASM\install_script.bat
       shell: cmd
 
 #    - name: Build libdvdnav
