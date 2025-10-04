@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36408.4 d17.14
+VisualStudioVersion = 17.14.36408.4
 MinimumVisualStudioVersion = 12.0.30501.0
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libavcodec", "libavcodec.vcxproj", "{B4824EFF-C340-425D-A4A8-E2E02A71A7AE}"
 	ProjectSection(ProjectDependencies) = postProject
 		{3CE4A9EF-98B6-4454-B76E-3AD9C03A2114} = {3CE4A9EF-98B6-4454-B76E-3AD9C03A2114}
+		{78F4C3F4-CD1D-47EE-82D4-3A81AA701486} = {78F4C3F4-CD1D-47EE-82D4-3A81AA701486}
 		{85763F39-23DF-4C04-B7DF-7FBE3E7CF336} = {85763F39-23DF-4C04-B7DF-7FBE3E7CF336}
 		{CE6C44DD-6E38-4293-8AB3-04EE28CCA972} = {CE6C44DD-6E38-4293-8AB3-04EE28CCA972}
+		{DBF1E8F7-5B7D-4CBF-842A-B7E0C02520DC} = {DBF1E8F7-5B7D-4CBF-842A-B7E0C02520DC}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libavdevice", "libavdevice.vcxproj", "{6E165FA4-44EB-4330-8394-9F0D76D8E03E}"
@@ -108,8 +110,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libdvdnav", "..\..\libdvdna
 		{66351D03-374D-4A28-B5DF-3BEBEE3430D2} = {66351D03-374D-4A28-B5DF-3BEBEE3430D2}
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbz2", "..\..\bzip2\SMP\libbz2.vcxproj", "{78F4C3F4-CD1D-47EE-82D4-3A81AA701486}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libsdl", "..\..\sdl\SMP\libsdl.vcxproj", "{D82A9F8C-D671-4D9B-AE40-13CC6098AE69}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libiconv", "..\..\libiconv\SMP\libiconv.vcxproj", "{CB8BB76F-D3FF-434E-A85E-7FFC0893EC9B}"
@@ -129,8 +129,18 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfreetype2", "..\..\freetype2\SMP\libfreetype2.vcxproj", "{E62DC439-DE3B-4F2F-84DF-B34E51FA1969}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libxml2", "..\..\libxml2\SMP\libxml2.vcxproj", "{CFE70273-7A79-4815-AF95-1E02E2675E37}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CA9A4A38-CC63-4BDB-8CFB-E058965DDA32} = {CA9A4A38-CC63-4BDB-8CFB-E058965DDA32}
+		{CB8BB76F-D3FF-434E-A85E-7FFC0893EC9B} = {CB8BB76F-D3FF-434E-A85E-7FFC0893EC9B}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libfontconfig", "..\..\fontconfig\SMP\libfontconfig.vcxproj", "{DBF1E8F7-5B7D-4CBF-842A-B7E0C02520DC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CFE70273-7A79-4815-AF95-1E02E2675E37} = {CFE70273-7A79-4815-AF95-1E02E2675E37}
+		{E62DC439-DE3B-4F2F-84DF-B34E51FA1969} = {E62DC439-DE3B-4F2F-84DF-B34E51FA1969}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbz2", "..\..\bzip2\SMP\libbz2.vcxproj", "{78F4C3F4-CD1D-47EE-82D4-3A81AA701486}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
