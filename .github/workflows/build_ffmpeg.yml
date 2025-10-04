@@ -21,6 +21,7 @@ jobs:
         sparse-checkout: |
           ffmpeg/ffmpeg.sln
         sparse-checkout-cone-mode: false
+        path: ${{ github.workspace }}/discripper
 
     - name: Checkout libdvdnav
       uses: actions/checkout@v5
@@ -52,7 +53,7 @@ jobs:
       run: Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - run: dir ${{ github.workspace }}/build
-    - run: copy ${{ github.workspace }}/ffmpeg/ffmpeg.sln ${{ github.workspace }}/build/FFmpeg/SMP/ffmpeg.sln
+    - run: copy ${{ github.workspace }}/discripper/ffmpeg/ffmpeg.sln ${{ github.workspace }}/build/FFmpeg/SMP/ffmpeg.sln
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
