@@ -66,9 +66,9 @@ jobs:
 #      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
 #      working-directory: ${{ github.workspace }}/build/libdvdnav
 #
-#    - name: Build dependencies
-#      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
-#      working-directory: ${{ github.workspace }}/build/FFmpeg
+    - name: Build dependencies
+      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
+      working-directory: ${{ github.workspace }}/build/FFmpeg
 
     - name: Generate FFmpeg project
       shell: cmd
