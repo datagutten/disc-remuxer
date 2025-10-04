@@ -73,6 +73,13 @@ jobs:
         ${{ github.workspace }}\build\VSNASM\install_script.bat
       shell: cmd
 
+    - name: Download and unpack VSYASM
+      run: |
+        Invoke-WebRequest -Uri https://github.com/ShiftMediaProject/VSNASM/releases/download/1.0/VSYASM.zip -OutFile VSYASM.zip
+        Expand-Archive -Path VSYASM.zip -DestinationPath ${{ github.workspace }}/build/VSYASM
+        ${{ github.workspace }}\build\VSYASM\install_script.bat
+
+
 #    - name: Build libdvdnav
 #      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
 #      working-directory: ${{ github.workspace }}/build/libdvdnav
