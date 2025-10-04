@@ -62,18 +62,18 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
 
-    - name: Build libdvdnav
-      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
-      working-directory: ${{ github.workspace }}/build/libdvdnav
-
-    - name: Build dependencies
-      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
-      working-directory: ${{ github.workspace }}/build/FFmpeg
-
-    - name: Generate FFmpeg project
-      shell: cmd
-      run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread --disable-nvdec --disable-nvenc
-      working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
+#    - name: Build libdvdnav
+#      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
+#      working-directory: ${{ github.workspace }}/build/libdvdnav
+#
+#    - name: Build dependencies
+#      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
+#      working-directory: ${{ github.workspace }}/build/FFmpeg
+#
+#    - name: Generate FFmpeg project
+#      shell: cmd
+#      run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread --disable-nvdec --disable-nvenc
+#      working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - name: Build FFmpeg
       run: msbuild 'SMP/ffmpeg_custom.sln' /p:configuration=Release /p:platform=x64
