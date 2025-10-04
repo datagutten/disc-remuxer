@@ -28,9 +28,22 @@ jobs:
         repository: ShiftMediaProject/libdvdnav
         path: ${{ github.workspace }}/build/libdvdnav
 
+    - name: Restore cached dependencies
+      id: cache-dependencies-restore
+      uses: actions/cache/restore@v4
+      with:
+        path: ${{ github.workspace }}/build
+        key: dependencies
+
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
       working-directory: ${{ github.workspace }}/build/FFmpeg
+
+    - name: Cache dependencies
+      uses: actions/cache/save@v4
+      with:
+        path: ${{ github.workspace }}/build
+        key: dependencies-${{ hashFiles('**/build') }}
 
     - name: Download FFVS-Project-Generator
       run: Invoke-WebRequest -Uri https://github.com/ShiftMediaProject/FFVS-Project-Generator/releases/download/1.12.0/FFVS-Project-Generator_1.12.0_x64.zip -OutFile FFVS-Project-Generator.zip
