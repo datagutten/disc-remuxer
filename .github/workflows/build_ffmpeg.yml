@@ -57,7 +57,7 @@ jobs:
       run: Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - run: dir ${{ github.workspace }}/build
-    - run: copy ${{ github.workspace }}/discripper/ffmpeg/ffmpeg.sln ${{ github.workspace }}/build/FFmpeg/SMP/ffmpeg.sln
+    - run: copy ${{ github.workspace }}/discripper/ffmpeg/ffmpeg.sln ${{ github.workspace }}/build/FFmpeg/SMP/ffmpeg_custom.sln
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
@@ -76,7 +76,7 @@ jobs:
       working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - name: Build FFmpeg
-      run: msbuild 'SMP/ffmpeg.sln' /p:configuration=Release /p:platform=x64
+      run: msbuild 'SMP/ffmpeg_custom.sln' /p:configuration=Release /p:platform=x64
       working-directory: ${{ github.workspace }}/build/FFmpeg
 
     - uses: actions/upload-artifact@v4
