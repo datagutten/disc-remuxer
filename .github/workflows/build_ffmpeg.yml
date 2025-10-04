@@ -62,10 +62,10 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
 
-#    - name: Build libdvdnav
-#      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
-#      working-directory: ${{ github.workspace }}/build/libdvdnav
-#
+    - name: Build libdvdnav
+      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
+      working-directory: ${{ github.workspace }}/build/libdvdnav
+
     - name: Build dependencies
       run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
       working-directory: ${{ github.workspace }}/build/FFmpeg
