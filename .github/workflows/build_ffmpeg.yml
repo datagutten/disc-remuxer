@@ -15,6 +15,13 @@ jobs:
         repository: ShiftMediaProject/FFmpeg
         path: ${{ github.workspace }}/build/FFmpeg
 
+    - name: Checkout custom solution
+      uses: actions/checkout@v5
+      with:
+        sparse-checkout: |
+          ffmpeg/ffmpeg.sln
+        sparse-checkout-cone-mode: false
+
     - name: Checkout libdvdnav
       uses: actions/checkout@v5
       with:
