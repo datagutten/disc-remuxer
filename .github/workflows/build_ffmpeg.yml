@@ -32,13 +32,18 @@ jobs:
       run: Expand-Archive -Path FFVS-Project-Generator.zip -DestinationPath ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - run: dir ${{ github.workspace }}/build
+    - run: copy ${{ github.workspace }}/ffmpeg/ffmpeg.sln ${{ github.workspace }}/build/FFmpeg/SMP/ffmpeg.sln
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
 
-    - name: Build dependencies
-      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
-      working-directory: ${{ github.workspace }}/build/FFmpeg
+#    - name: Build libdvdnav
+#      run: msbuild 'SMP/libdvdnav.sln' /p:configuration=Release /p:platform=x64
+#      working-directory: ${{ github.workspace }}/build/libdvdnav
+#
+#    - name: Build dependencies
+#      run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
+#      working-directory: ${{ github.workspace }}/build/FFmpeg
 
     - name: Generate FFmpeg project
       shell: cmd
