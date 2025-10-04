@@ -19,7 +19,7 @@ jobs:
       uses: actions/checkout@v5
       with:
         repository: ShiftMediaProject/libdvdnav
-        path: ${{ github.workspace }}/build/dvdnav
+        path: ${{ github.workspace }}/build/libdvdnav
 
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
@@ -33,17 +33,17 @@ jobs:
 
     - run: dir ${{ github.workspace }}/build
 
-    - name: Generate FFmpeg project
-      shell: cmd
-      run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread --disable-nvdec --disable-nvenc
-      working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
-
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
 
     - name: Build dependencies
       run: msbuild 'SMP/ffmpeg_deps.sln' /p:configuration=Release /p:platform=x64
       working-directory: ${{ github.workspace }}/build/FFmpeg
+
+    - name: Generate FFmpeg project
+      shell: cmd
+      run: project_generate.exe --enable-gpl --enable-version3 --enable-libbluray --enable-libdvdnav --enable-libdvdread --disable-nvdec --disable-nvenc
+      working-directory: ${{ github.workspace }}/build/FFVS-Project-Generator
 
     - name: Build FFmpeg
       run: msbuild 'SMP/ffmpeg.sln' /p:configuration=Release /p:platform=x64
