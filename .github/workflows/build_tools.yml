@@ -19,6 +19,10 @@ jobs:
       with:
         repository: ShiftMediaProject/${{ matrix.tool }}
 
+    - name: Install VS2010 Toolset
+      shell: powershell
+      run: choco install vsexpress2010 -y --no-progress
+
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
 
