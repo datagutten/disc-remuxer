@@ -52,10 +52,10 @@ jobs:
       run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
       if: matrix.tool != 'libdvdread'
 
-    - name: Build libaacs
+    - name: Build tool
       run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.tool }}
-        path: D:\a\${{ matrix.tool }}\msvc # ${{ github.workspace }}/../../msvc
+        path: ${{ matrix.tool }}/msvc
