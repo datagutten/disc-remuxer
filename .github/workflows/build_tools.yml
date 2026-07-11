@@ -18,7 +18,7 @@ jobs:
         - tool: 'libbluray'
           repo: 'ShiftMediaProject/libbluray'
         - tool: 'libdvdread'
-          repo: 'ShiftMediaProject/libdvdread'
+          repo: 'Windows-Media-Tools/libdvdread'
 
     steps:
 
