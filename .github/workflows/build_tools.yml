@@ -51,11 +51,13 @@ jobs:
       if: matrix.tool != 'libdvdread'
 
     - name: Build dependencies
-      run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64 /p:PlatformToolset=v145
+      run: msbuild 'SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64 /p:PlatformToolset=v145
       if: matrix.tool != 'libdvdread'
+      working-directory: ${{ matrix.tool }}
 
     - name: Build tool
-      run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64 /p:PlatformToolset=v145
+      run: msbuild 'SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64 /p:PlatformToolset=v145
+      working-directory: ${{ matrix.tool }}
 
     - uses: actions/upload-artifact@v7
       with:
