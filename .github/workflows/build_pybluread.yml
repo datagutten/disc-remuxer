@@ -37,7 +37,6 @@ jobs:
       run: pip3 install -U setuptools delvewheel
 
     - name: Build Python wheel
-      working-directory: PyBluRead
       shell: bash
       run: python setup.py bdist_wheel
       env:
