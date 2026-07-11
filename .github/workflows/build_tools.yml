@@ -14,9 +14,9 @@ jobs:
         - tool: 'libaacs'
           repo: 'Windows-Media-Tools/libaacs'
         - tool: 'libbdplus'
-          repo: 'ShiftMediaProject/libbdplus'
+          repo: 'Windows-Media-Tools/libbdplus'
         - tool: 'libbluray'
-          repo: 'ShiftMediaProject/libbluray'
+          repo: 'Windows-Media-Tools/libbluray'
         - tool: 'libdvdread'
           repo: 'Windows-Media-Tools/libdvdread'
 
