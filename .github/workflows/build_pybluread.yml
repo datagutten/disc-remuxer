@@ -44,7 +44,7 @@ jobs:
         LIBBLURAY_LIBRARY_DIR: ${{ github.workspace }}\libbluray\lib\x64
 
     - name: Include dlls in wheel
-      run: delvewheel repair
+      run: delvewheel repair dist/bluread*.wheel
 
     - uses: actions/upload-artifact@v7
       with:
