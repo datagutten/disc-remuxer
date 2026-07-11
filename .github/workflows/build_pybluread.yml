@@ -25,6 +25,13 @@ jobs:
         name: libbluray
         path: ${{ github.workspace }}/libbluray
 
+    - name: Download libaacs
+      uses: dawidd6/action-download-artifact@v21
+      with:
+        workflow: build_tools.yml
+        name: libaacs
+        path: ${{ github.workspace }}/libaacs
+
     - name: Display structure of downloaded files
       run: ls -R ${{ github.workspace }}/libbluray
 
@@ -44,7 +51,7 @@ jobs:
         LIBBLURAY_LIBRARY_DIR: ${{ github.workspace }}\libbluray\lib\x64
 
     - name: Include dlls in wheel
-      run: delvewheel repair dist/bluread*.whl --add-path "${{ github.workspace }}\libbluray\bin\x64" --include aacs.dll
+      run: delvewheel repair dist/bluread*.whl --add-path "${{ github.workspace }}\libbluray\bin\x64" --add-path "${{ github.workspace }}\libaacs\bin\x64" --include aacs.dll
       shell: bash
 
     - uses: actions/upload-artifact@v7
