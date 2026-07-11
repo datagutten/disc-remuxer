@@ -60,5 +60,5 @@ jobs:
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.tool }}
-        path: ${{ github.workspace }}/msvc
+        path: ${{ github.workspace }}/build
 
