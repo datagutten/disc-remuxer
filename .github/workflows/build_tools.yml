@@ -62,4 +62,7 @@ jobs:
     - uses: actions/upload-artifact@v7
       with:
         name: ${{ matrix.tool }}
-        path: ${{ matrix.tool }}/msvc
+        path: |
+          ${{ matrix.tool }}/msvc
+          msvc
+          ../msvc
