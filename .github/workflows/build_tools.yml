@@ -63,5 +63,4 @@ jobs:
         path: |
           ${{ matrix.tool }}/msvc
           msvc
-          ${{ github.workspace }}/../msvc
 
