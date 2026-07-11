@@ -58,3 +58,8 @@ jobs:
       with:
         name: PyBluRead Python ${{ matrix.python-version }}
         path: dist
+
+    - uses: actions/upload-artifact@v7
+      with:
+        path: wheelhouse
+        archive: false
