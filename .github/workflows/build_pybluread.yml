@@ -19,8 +19,9 @@ jobs:
         repository: datagutten/PyBluRead
 
     - name: Download libbluray
-      uses: actions/download-artifact@v8
+      uses: dawidd6/action-download-artifact@v21
       with:
+        workflow: build_tools.yml
         name: libbluray
         path: ${{ github.workspace }}/libbluray
 
