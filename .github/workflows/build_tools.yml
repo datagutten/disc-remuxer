@@ -28,6 +28,12 @@ jobs:
         repository: Windows-Media-Tools/libgpg-error
         path: libgpg-error
 
+    - name: Checkout forked libgcrypt
+      uses: actions/checkout@v5
+      with:
+        repository: Windows-Media-Tools/libgcrypt
+        path: libgcrypt
+
     - name: Checkout tool
       uses: actions/checkout@v5
       with:
