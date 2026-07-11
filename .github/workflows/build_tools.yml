@@ -38,7 +38,7 @@ jobs:
       uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
 
     - name: Get dependencies
-      run: SMP/project_get_dependencies.bat
+      run: ${{ matrix.tool }}/SMP/project_get_dependencies.bat
       if: matrix.tool != 'libdvdread'
 
     - name: Build dependencies
