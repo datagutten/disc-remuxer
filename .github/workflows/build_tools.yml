@@ -6,7 +6,7 @@ on:
 
 jobs:
   build_tools:
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
@@ -22,13 +22,18 @@ jobs:
 
     steps:
 
+    - name: Checkout forked libgpg-error
+      uses: actions/checkout@v5
+      with:
+        repository: Windows-Media-Tools/libgpg-error
+
     - name: Checkout tool
       uses: actions/checkout@v5
       with:
         repository: ${{ matrix.repo }}
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
+      uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
 
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
