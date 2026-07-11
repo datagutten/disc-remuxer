@@ -10,18 +10,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [ 'libaacs','libbdplus', 'libbluray', 'libdvdread' ]
+        tool: [ 'Windows-Media-Tools/libaacs','ShiftMediaProject/libbdplus', 'ShiftMediaProject/libbluray', 'ShiftMediaProject/libdvdread' ]
 
     steps:
 
     - name: Checkout tool
       uses: actions/checkout@v5
       with:
-        repository: ShiftMediaProject/${{ matrix.tool }}
-
-    - name: Install VS2010 Toolset
-      shell: powershell
-      run: choco install vsexpress2010 -y --no-progress
+        repository: ${{ matrix.tool }}
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
