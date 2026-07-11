@@ -27,12 +27,14 @@ jobs:
       with:
         repository: Windows-Media-Tools/libgpg-error
         path: libgpg-error
+      if: matrix.tool != 'libbluray'
 
     - name: Checkout forked libgcrypt
       uses: actions/checkout@v5
       with:
         repository: Windows-Media-Tools/libgcrypt
         path: libgcrypt
+      if: matrix.tool != 'libbluray'
 
     - name: Checkout tool
       uses: actions/checkout@v5
