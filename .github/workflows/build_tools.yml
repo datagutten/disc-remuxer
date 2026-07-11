@@ -10,14 +10,22 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        tool: [ 'Windows-Media-Tools/libaacs','ShiftMediaProject/libbdplus', 'ShiftMediaProject/libbluray', 'ShiftMediaProject/libdvdread' ]
+        include:
+        - tool: 'libaacs'
+          repo: 'Windows-Media-Tools/libaacs'
+        - tool: 'libbdplus'
+          repo: 'ShiftMediaProject/libbdplus'
+        - tool: 'libbluray'
+          repo: 'ShiftMediaProject/libbluray'
+        - tool: 'libdvdread'
+          repo: 'ShiftMediaProject/libdvdread'
 
     steps:
 
     - name: Checkout tool
       uses: actions/checkout@v5
       with:
-        repository: ${{ matrix.tool }}
+        repository: ${{ matrix.repo }}
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
