@@ -8,10 +8,6 @@ jobs:
   build_pydvdread:
     name: Build pydvdread
     runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        python-version: [ '3.10', '3.11', '3.12', '3.13', '3.14' ]
 
     steps:
     - name: Get latest libdvdread build
@@ -49,21 +45,16 @@ jobs:
         mv disc-remuxer/pydvdread_build/config.h pydvdread/libdvdread/include
         mv disc-remuxer/pydvdread_build/version.h pydvdread/libdvdread/include
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
+    - name: Set up Python
+      uses: actions/setup-python@v6
 
     - name: Install setuptools
-      run: pip3 install -U setuptools
+      run: pip3 install -U setuptools delvewheel
 
-    - name: Build Python wheel
-      working-directory: pydvdread
-      shell: bash
-      run: python setup.py bdist_wheel
+    - name: Build wheels
+      run: python -m cibuildwheel --output-dir wheelhouse
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v6
       with:
-        name: pydvdread Python ${{ matrix.python-version }}
-        path: pydvdread/dist
-
+        name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+        path: ./wheelhouse/*.whl
