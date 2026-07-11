@@ -26,12 +26,13 @@ jobs:
       uses: actions/checkout@v5
       with:
         repository: Windows-Media-Tools/libgpg-error
-        path: ../libgpg-error
+        path: libgpg-error
 
     - name: Checkout tool
       uses: actions/checkout@v5
       with:
         repository: ${{ matrix.repo }}
+        path: ${{ matrix.tool }}
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
@@ -41,13 +42,13 @@ jobs:
       if: matrix.tool != 'libdvdread'
 
     - name: Build dependencies
-      run: msbuild 'SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
+      run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}_deps.sln' /p:configuration=ReleaseDLL /p:platform=x64
       if: matrix.tool != 'libdvdread'
 
     - name: Build libaacs
-      run: msbuild 'SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
+      run: msbuild '${{ matrix.tool }}/SMP/${{ matrix.tool }}.sln' /p:configuration=ReleaseDLL /p:platform=x64
 
     - uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.tool }}
-        path: D:\a\msvc # ${{ github.workspace }}/../../msvc
+        path: D:\a\${{ matrix.tool }}\msvc # ${{ github.workspace }}/../../msvc
