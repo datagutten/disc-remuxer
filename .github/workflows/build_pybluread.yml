@@ -1,0 +1,52 @@
+name: build_pybluread.yml
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build_pybluread:
+    name: Build PyBluRead
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ '3.10', '3.11', '3.12', '3.13', '3.14' ]
+
+    steps:
+    - name: Checkout PyBluRead
+      uses: actions/checkout@v5
+      with:
+        repository: datagutten/PyBluRead
+
+    - name: Download libbluray
+      uses: actions/download-artifact@v8
+      with:
+        name: libbluray
+        path: ${{ github.workspace }}/libbluray
+
+    - name: Display structure of downloaded files
+      run: ls -R ${{ github.workspace }}/libbluray
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install setuptools
+      run: pip3 install -U setuptools delvewheel
+
+    - name: Build Python wheel
+      working-directory: PyBluRead
+      shell: bash
+      run: python setup.py bdist_wheel
+      env:
+        LIBBLURAY_INCLUDE_DIR: ${{ github.workspace }}\libbluray\include\\libbluray
+        LIBBLURAY_LIBRARY_DIR: ${{ github.workspace }}\libbluray\lib\x64
+
+    - name: Include dlls in wheel
+      run: delvewheel repair
+
+    - uses: actions/upload-artifact@v7
+      with:
+        name: PyBluRead Python ${{ matrix.python-version }}
+        path: dist
