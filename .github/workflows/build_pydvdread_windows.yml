@@ -48,8 +48,8 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v6
 
-    - name: Install setuptools
-      run: pip3 install -U setuptools delvewheel
+    - name: Install cibuildwheel
+      run: python -m pip install cibuildwheel==4.1.0
 
     - name: Build wheels
       run: python -m cibuildwheel --output-dir wheelhouse
