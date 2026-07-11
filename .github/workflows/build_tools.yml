@@ -28,7 +28,7 @@ jobs:
         repository: ${{ matrix.repo }}
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v3 # Action to set up MSBuild environment
+      uses: microsoft/setup-msbuild@v2 # Action to set up MSBuild environment
 
     - name: Get dependencies
       run: SMP/project_get_dependencies.bat
