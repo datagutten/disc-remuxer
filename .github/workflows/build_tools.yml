@@ -47,6 +47,7 @@ jobs:
 
     - name: Get dependencies
       run: project_get_dependencies.bat
+      shell: cmd
       working-directory: ${{ matrix.tool }}/SMP
       if: matrix.tool != 'libdvdread'
 
